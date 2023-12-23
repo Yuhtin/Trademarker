@@ -29,12 +29,10 @@ public class WatermarkRenderer extends MapRenderer {
         int x;
         int y;
 
-        switch(posy){
-            case "bottom":
-                y = 128-height-1;
-                break;
-            default:
-                y = 1;
+        if (posy.equals("bottom")) {
+            y = 128 - height - 1;
+        } else {
+            y = 1;
         }
 
         switch(posx){

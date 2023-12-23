@@ -9,23 +9,25 @@ import org.bukkit.command.CommandSender;
 public class ReloadCommand implements CommandExecutor {
 
     private final Trademarker main;
-    public ReloadCommand(Trademarker main){
+
+    public ReloadCommand(Trademarker main) {
         this.main = main;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!sender.hasPermission("trademarker.reload")){
+        if (!sender.hasPermission("trademarker.reload")) {
             Trademarker.colorCode(main.getConfig().getString("lang.no_perms"));
             return true;
         }
 
-        sender.sendMessage(ChatColor.GOLD+"Reloading config...");
+        sender.sendMessage(ChatColor.GOLD + "Reloading config...");
         main.reloadConfig();
-        sender.sendMessage(ChatColor.GREEN+"Config reloaded!");
+        sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
 
-        if(!main.getConfig().getString("lang.trademark_format").contains("%player%")){
-            sender.sendMessage(ChatColor.RED+"Trademark format doesn't have a %player% placeholder!");
+        if (!main.getConfig().getString("lang.trademark_format").contains("%player%")) {
+            sender.sendMessage(ChatColor.RED + "Trademark format doesn't have a %player% placeholder!");
+            main.getLogger().severe(ChatColor.RED + "Trademark format doesn't have a %player% placeholder!");
         }
 
         return true;
